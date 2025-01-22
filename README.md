@@ -1,5 +1,3 @@
-
-<script async defer src="https://buttons.github.io/buttons.js"></script>
 # GameIsle
 ## Unleash your potential
 ### Welcome! Feel free to explore the website!!
