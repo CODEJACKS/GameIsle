@@ -24,12 +24,6 @@ buttonInstall.addEventListener('click', async () => {
   deferredPrompt = null;
 });
 
-
-
-
-
-
-
 let installPrompt = null;
 const installButton = document.querySelector("#install");
 
@@ -235,4 +229,35 @@ document.addEventListener("DOMContentLoaded", function() {
   if (cookieConsent === "accepted" || cookieConsent === "declined") {
     document.getElementById("cookie-consent-banner").style.display = "none";
   }
+
+  // Search functionality
+  const searchInput = document.getElementById("search-input");
+  const searchButton = document.getElementById("search-button");
+
+  searchButton.addEventListener("click", function() {
+    const query = searchInput.value.toLowerCase();
+    const gameLinks = document.querySelectorAll(".container a");
+
+    gameLinks.forEach(function(link) {
+      const gameName = link.textContent.toLowerCase();
+      if (gameName.includes(query)) {
+        link.style.display = "block";
+      } else {
+        link.style.display = "none";
+      }
+    });
+  });
+
+  // Subtle animations
+  const buttons = document.querySelectorAll(".custom-button");
+  buttons.forEach(button => {
+    button.addEventListener("mouseover", function() {
+      button.style.transform = "scale(1.05)";
+      button.style.transition = "transform 0.3s ease";
+    });
+
+    button.addEventListener("mouseout", function() {
+      button.style.transform = "scale(1)";
+    });
+  });
 });
