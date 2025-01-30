@@ -58,4 +58,30 @@ document.getElementById('search-button').addEventListener('click', function() {
     } else {
         searchResultsDiv.textContent = 'No results found';
     }
+    // Store the search term in local storage
+    let pastSearches = JSON.parse(localStorage.getItem('pastSearches')) || [];
+    if (!pastSearches.includes(searchInput) && searchInput.trim() !== '') {
+        pastSearches.push(searchInput);
+        localStorage.setItem('pastSearches', JSON.stringify(pastSearches));
+    }
+});
+
+document.getElementById('search-input').addEventListener('input', function() {
+    const searchInput = document.getElementById('search-input').value.toLowerCase();
+    const suggestionsDiv = document.getElementById('suggestions');
+    suggestionsDiv.innerHTML = '';
+
+    let pastSearches = JSON.parse(localStorage.getItem('pastSearches')) || [];
+    const filteredSuggestions = pastSearches.filter(search => search.includes(searchInput));
+
+    filteredSuggestions.forEach(suggestion => {
+        const suggestionItem = document.createElement('div');
+        suggestionItem.className = 'suggestion-item';
+        suggestionItem.textContent = suggestion;
+        suggestionItem.addEventListener('click', function() {
+            document.getElementById('search-input').value = suggestion;
+            suggestionsDiv.innerHTML = '';
+        });
+        suggestionsDiv.appendChild(suggestionItem);
+    });
 });
