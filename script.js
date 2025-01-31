@@ -1,25 +1,25 @@
 document.getElementById('search-button').addEventListener('click', function() {
     const searchInput = document.getElementById('search-input').value.toLowerCase();
     const categories = [
-        { name: 'Adventure', link: 'main/Categories/cat1.html' },
-        { name: 'Clicking/Button', link: 'main/Categories/cat2.html' },
-        { name: 'Shooting', link: 'main/Categories/cat3.html' },
-        { name: 'WASD', link: 'main/Categories/cat4.html' },
-        { name: 'Sports', link: 'main/Categories/cat5.html' }
+        { name: 'Adventure', link: 'Categories/cat1.html' },
+        { name: 'Clicking/Button', link: 'Categories/cat2.html' },
+        { name: 'Shooting', link: 'Categories/cat3.html' },
+        { name: 'WASD', link: 'Categories/cat4.html' },
+        { name: 'Sports', link: 'Categories/cat5.html' }
     ];
 
     const games = [
-        { name: '1v1.lol', link: 'main/Games/1v1.lol.html' },
-        { name: 'Snowrider 3D', link: 'main/Games/Snowrider 3d.html' },
-        { name: 'Basket Random', link: 'main/Games/basketrandom.html' },
-        { name: 'Chatbot', link: 'main/Games/chatbot.html' },
-        { name: 'Delaford', link: 'main/Games/delaford.html' },
-        { name: 'Eaglercraft', link: 'main/Games/eaglercraft1.8.8.html' },
-        { name: 'Geometry Dash', link: 'main/Games/geometrydash.html' },
-        { name: 'GunSpin', link: 'main/Games/gunspin.html' },
-        { name: 'Image Generator', link: 'main/Games/imagegen.html' },
-        { name: 'PolyTrack', link: 'main/Games/polytrack.html' },
-        { name: 'ShellShockers', link: 'main/Games/shellshockersio.html' },
+        { name: '1v1.lol', link: 'Games/1v1.lol.html' },
+        { name: 'Snowrider 3D', link: 'Games/Snowrider 3d.html' },
+        { name: 'Basket Random', link: 'Games/basketrandom.html' },
+        { name: 'Chatbot', link: 'Games/chatbot.html' },
+        { name: 'Delaford', link: 'Games/delaford.html' },
+        { name: 'Eaglercraft', link: 'Games/eaglercraft1.8.8.html' },
+        { name: 'Geometry Dash', link: 'Games/geometrydash.html' },
+        { name: 'GunSpin', link: 'Games/gunspin.html' },
+        { name: 'Image Generator', link: 'Games/imagegen.html' },
+        { name: 'PolyTrack', link: 'Games/polytrack.html' },
+        { name: 'ShellShockers', link: 'Games/shellshockersio.html' },
     ];
 
     const filteredCategories = categories.filter(category => category.name.toLowerCase().includes(searchInput));
