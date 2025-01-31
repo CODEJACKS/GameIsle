@@ -1,4 +1,3 @@
-
 ![000252](https://github.com/user-attachments/assets/02194435-4a02-4884-9a11-5c3b827a91aa)
 
 
@@ -23,7 +22,7 @@ We are excited to announce a new release with the following major changes:
 * 🧭 Added a navbar partial in `views/partials/navbar.ejs` to provide easy navigation across the website.
 
 #### Follow us on BSKY at https://bsky.app/egcj.bsky.social
-<a class="github-button" href="https://github.com/CODEJACKS" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow @CODEJACKS on GitHub">Follow @CODEJACKS</a>
-<a class="github-button" href="https://github.com/CODEJACKS/GameIsle" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" aria-label="Star CODEJACKS/GameIsle on GitHub">Star</a>
-<a class="github-button" href="https://github.com/CODEJACKS/GameIsle/subscription" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-eye" data-size="large" aria-label="Watch CODEJACKS/GameIsle on GitHub">Watch</a>
-<a class="github-button" href="https://github.com/CODEJACKS" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow @CODEJACKS on GitHub">Follow @CODEJACKS</a>
+<a class="github-button" href="https://github.com/elitegamercj" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow @elitegamercj on GitHub">Follow @elitegamercj</a>
+<a class="github-button" href="https://github.com/elitegamercj/GameIsle" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" aria-label="Star elitegamercj/GameIsle on GitHub">Star</a>
+<a class="github-button" href="https://github.com/elitegamercj/GameIsle/subscription" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-eye" data-size="large" aria-label="Watch elitegamercj/GameIsle on GitHub">Watch</a>
+<a class="github-button" href="https://github.com/elitegamercj" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow @elitegamercj on GitHub">Follow @elitegamercj</a>
