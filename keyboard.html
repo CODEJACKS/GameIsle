@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Custom Language Keyboard</title>
+  <style>
+    /* Import your custom font using the WOFF2 file */
+    @font-face {
+      font-family: 'MyCustomFont';
+      src: url('your-font.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+    
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+    }
+    
+    /* Style the search input */
+    #search-box {
+      width: 300px;
+      padding: 10px;
+      font-size: 18px;
+    }
+    
+    /* The keyboard container */
+    #keyboard {
+      display: none; /* Hidden by default */
+      position: absolute;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      z-index: 1000;
+      font-family: 'MyCustomFont', sans-serif; /* Use your custom font */
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 5px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    /* Style each key */
+    .key {
+      padding: 10px;
+      font-size: 24px;
+      text-align: center;
+      cursor: pointer;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      user-select: none;
+    }
+    
+    .key:hover {
+      background-color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Custom Language Search</h2>
+  <!-- Search box where the keyboard will pop up -->
+  <input type="text" id="search-box" placeholder="Type your search here..." autocomplete="off">
+
+  <!-- The custom on-screen keyboard -->
+  <div id="keyboard">
+    <!-- Example keys with your custom characters -->
+    <button class="key">𐑂</button>
+    <button class="key">𐑃</button>
+    <button class="key">𐑄</button>
+    <button class="key">𐑅</button>
+    <button class="key">𐑆</button>
+    <button class="key">𐑇</button>
+    <button class="key">𐑈</button>
+    <button class="key">𐑉</button>
+    <button class="key">𐑊</button>
+    <button class="key">𐑋</button>
+    <!-- You can add more keys or rows as needed -->
+  </div>
+
+  <script>
+    const searchBox = document.getElementById('search-box');
+    const keyboard = document.getElementById('keyboard');
+
+    // Function to position and show the keyboard
+    function showKeyboard() {
+      const rect = searchBox.getBoundingClientRect();
+      // Position the keyboard below the search box (adjust as needed)
+      keyboard.style.left = `${rect.left + window.scrollX}px`;
+      keyboard.style.top = `${rect.bottom + window.scrollY + 5}px`;
+      keyboard.style.display = 'grid';
+    }
+
+    // Show the keyboard when the search box gains focus
+    searchBox.addEventListener('focus', showKeyboard);
+
+    // Hide the keyboard when clicking outside of the search box and the keyboard
+    document.addEventListener('click', (e) => {
+      if (!keyboard.contains(e.target) && e.target !== searchBox) {
+        keyboard.style.display = 'none';
+      }
+    });
+
+    // Append the clicked key's character to the search box
+    document.querySelectorAll('.key').forEach(button => {
+      button.addEventListener('click', () => {
+        searchBox.value += button.textContent;
+        // Optionally, return focus to the search box after clicking a key
+        searchBox.focus();
+      });
+    });
+  </script>
+
+</body>
+</html>
