@@ -1,19 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: #343A40;
   margin: 0;
   padding: 0;
 }
 
 h1, h2, h3 {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: #ffffff;
 }
 
 .custom-button {
-  background: #007BFF;
+  background: #28A745;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -29,14 +30,14 @@ h1, h2, h3 {
 }
 
 .custom-button:hover {
-  background: #FF5733;
+  background: #FFC107;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
 }
 
 .navbar {
-  background: linear-gradient(to right, #333, #444);
-  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to right, #FF5733, #FFC107);
+  font-family: 'Open Sans', sans-serif;
   position: fixed;
   top: 0;
   width: 100%;
@@ -54,7 +55,7 @@ h1, h2, h3 {
 }
 
 .navbar a:hover {
-  background-color: #555;
+  background-color: #28A745;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -85,14 +86,14 @@ h1, h2, h3 {
   font-size: 16px;
   border: 1px solid #ccc;
   border-left: none;
-  background-color: #007BFF;
+  background-color: #28A745;
   color: white;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
 }
 
 .search-bar button:hover {
-  background-color: #FF5733;
+  background-color: #FFC107;
 }
 
 .new-releases, .testimonials {
@@ -144,7 +145,7 @@ h1, h2, h3 {
 }
 
 .hero-section .custom-button {
-  background: #FF5733;
+  background: #FFC107;
   padding: 15px 30px;
   font-size: 1.2em;
 }
