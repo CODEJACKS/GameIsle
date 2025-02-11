@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <link rel="manifest" href="https://elitegamercj.github.io/app.webmanifest">
+    <meta charset="UTF-8">
+    <link rel="icon" href="GAMEISLELOGOjson1.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAME</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+            background: #87CEEB;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const player = {
+            x: 50,
+            y: canvas.height - 150,
+            width: 50,
+            height: 50,
+            color: 'red',
+            dy: 0,
+            dx: 0,
+            speed: 5,
+            gravity: 0.5,
+            jumpPower: -10,
+            jumps: 0,
+            maxJumps: 2,
+            score: 0
+        };
+
+        const platforms = [
+            { x: 100, y: canvas.height - 100, width: 200, height: 20, dx: 2 },
+            { x: 400, y: canvas.height - 200, width: 200, height: 20, dx: -2 },
+            { x: 700, y: canvas.height - 300, width: 200, height: 20, dx: 1 }
+        ];
+
+        const coins = [
+            { x: 150, y: canvas.height - 150, width: 20, height: 20 },
+            { x: 450, y: canvas.height - 250, width: 20, height: 20 },
+            { x: 750, y: canvas.height - 350, width: 20, height: 20 }
+        ];
+
+        function drawPlayer() {
+            ctx.fillStyle = player.color;
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+        }
+
+        function drawPlatforms() {
+            ctx.fillStyle = 'green';
+            platforms.forEach(platform => {
+                ctx.fillRect(platform.x, platform.y, platform.width, platform.height);
+            });
+        }
+
+        function drawCoins() {
+            ctx.fillStyle = 'yellow';
+            coins.forEach(coin => {
+                ctx.fillRect(coin.x, coin.y, coin.width, coin.height);
+            });
+        }
+
+        function updatePlayer() {
+            player.dy += player.gravity;
+            player.y += player.dy;
+            player.x += player.dx;
+
+            if (player.y + player.height > canvas.height) {
+                resetGame();
+            }
+
+            platforms.forEach(platform => {
+                if (player.x < platform.x + platform.width &&
+                    player.x + player.width > platform.x &&
+                    player.y < platform.y + platform.height &&
+                    player.y + player.height > platform.y) {
+                    player.y = platform.y - player.height;
+                    player.dy = 0;
+                    player.jumps = 0;
+                }
+            });
+
+            coins.forEach((coin, index) => {
+                if (player.x < coin.x + coin.width &&
+                    player.x + player.width > coin.x &&
+                    player.y < coin.y + coin.height &&
+                    player.y + player.height > coin.y) {
+                    coins.splice(index, 1);
+                    player.score += 10;
+                    player.jumps = 0; // Recharge double jump
+                }
+            });
+        }
+
+        function updatePlatformsAndCoins() {
+            platforms.forEach(platform => {
+                platform.x -= player.speed;
+                if (platform.x + platform.width < 0) {
+                    platforms.splice(platforms.indexOf(platform), 1);
+                    generatePlatform();
+                }
+            });
+
+            coins.forEach(coin => {
+                coin.x -= player.speed;
+                if (coin.x + coin.width < 0) {
+                    coins.splice(coins.indexOf(coin), 1);
+                }
+            });
+        }
+
+        function generatePlatform() {
+            const platformWidth = 200;
+            const platformHeight = 20;
+            const platformX = canvas.width;
+            const platformY = canvas.height - Math.random() * 300 - platformHeight;
+
+            // Create a gap with a 30% chance
+            if (Math.random() < 0.3) {
+                platforms.push({ x: platformX + platformWidth + 100, y: platformY, width: platformWidth, height: platformHeight });
+            } else {
+                platforms.push({ x: platformX, y: platformY, width: platformWidth, height: platformHeight });
+            }
+
+            // Generate a coin on the platform
+            if (Math.random() < 0.8) { // 80% chance to generate a coin on the platform
+                const coinWidth = 20;
+                const coinHeight = 20;
+                const coinX = platformX + platformWidth / 2 - coinWidth / 2;
+                const coinY = platformY - coinHeight;
+                coins.push({ x: coinX, y: coinY, width: coinWidth, height: coinHeight });
+            }
+
+            // Generate a hard-to-reach coin
+            if (Math.random() < 0.3) { // 30% chance to generate a hard-to-reach coin
+                const coinWidth = 20;
+                const coinHeight = 20;
+                const coinX = platformX + platformWidth / 2 - coinWidth / 2;
+                const coinY = platformY - coinHeight - 100; // Higher position
+                coins.push({ x: coinX, y: coinY, width: coinWidth, height: coinHeight });
+            }
+        }
+
+        function jump() {
+            if (player.jumps < player.maxJumps) {
+                player.dy = player.jumpPower;
+                player.jumps++;
+            }
+        }
+
+        function resetGame() {
+            player.x = 50;
+            player.y = canvas.height - 150;
+            player.dy = 0;
+            player.dx = 0;
+            player.jumps = 0;
+            player.score = 0;
+            platforms.length = 0;
+            coins.length = 0;
+            platforms.push({ x: 100, y: canvas.height - 100, width: 200, height: 20 });
+            platforms.push({ x: 400, y: canvas.height - 200, width: 200, height: 20 });
+            platforms.push({ x: 700, y: canvas.height - 300, width: 200, height: 20 });
+            coins.push({ x: 150, y: canvas.height - 150, width: 20, height: 20 });
+            coins.push({ x: 450, y: canvas.height - 250, width: 20, height: 20 });
+            coins.push({ x: 750, y: canvas.height - 350, width: 20, height: 20 });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                jump();
+            }
+            if (e.code === 'ArrowRight') {
+                player.dx = player.speed;
+            }
+            if (e.code === 'ArrowLeft') {
+                player.dx = -player.speed;
+            }
+        });
+
+        document.addEventListener('keyup', (e) => {
+            if (e.code === 'ArrowRight' || e.code === 'ArrowLeft') {
+                player.dx = 0;
+            }
+        });
+
+        function drawScore() {
+            ctx.fillStyle = 'black';
+            ctx.font = '20px Arial';
+            ctx.fillText(`Score: ${player.score}`, 10, 30);
+        }
+
+        function gameLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawPlayer();
+            drawPlatforms();
+            drawCoins();
+            drawScore();
+            updatePlayer();
+            updatePlatformsAndCoins();
+            requestAnimationFrame(gameLoop);
+        }
+
+        gameLoop();
+    </script>
+</body>
+</html>
