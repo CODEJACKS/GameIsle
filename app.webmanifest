@@ -1,27 +1,27 @@
-{
-  "name": "GameIsle",
-  "short_name": "GIS",
-  "description": "Play free games with no ads, forever!",
-  "start_url": "https://elitegamercj.github.io/GameIsle",
-  "scope": "/GameIsle",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#000000",
-  "orientation": "any",
-  "dir": "auto",
-  "lang": "en",
-  "prefer_related_applications": false,
-  "categories": ["games", "kids"],
+
+ {
+  "theme_color": "#8936FF",
+  "background_color": "#2EC6FE",
   "icons": [
     {
-      "src": "images/GAMISLELOGOBACKjson1.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "GAMEISLELOGOBACKjson1.png",
+      "type": "image/png"
     },
     {
-      "src": "images/GAMEISLELOGOBACKjson1.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "purpose": "any",
+      "sizes": "512x512",
+      "src": "GAMEISLELOGOBACKjson1.png",
+      "type": "image/png"
     }
-  ]
+  ],
+  "orientation": "landscape",
+  "display": "standalone",
+  "dir": "auto",
+  "lang": "en-US",
+  "name": "GameIsle",
+  "short_name": "GIS",
+  "start_url": "https://elitegamercj.github.io/GameIsle/index.html",
+  "description": "GameIsle app"
 }
