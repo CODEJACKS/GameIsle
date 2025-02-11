@@ -14,12 +14,12 @@
   "categories": ["games", "kids"],
   "icons": [
     {
-      "src": "images/GAMISLELOGOjson1.png",
+      "src": "images/GAMISLELOGOBACKjson1.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "images/GAMEISLELOGOjson1.png",
+      "src": "images/GAMEISLELOGOBACKjson1.png",
       "type": "image/png",
       "sizes": "512x512"
     }
