@@ -2,7 +2,7 @@
   "name": "GameIsle",
   "short_name": "GIS",
   "description": "This app is for GameIsle website",
-  "start_url": "https://elitegamercj.github.io/GameIsle/Index.html",
+  "start_url": "https://elitegamercj.github.io/GameIsle/index.html",
   "scope": "https://elitegamercj.github.io/GameIsle",
   "display": "standalone",
   "orientation": "any",
