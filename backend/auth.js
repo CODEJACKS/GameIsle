@@ -50,7 +50,7 @@ function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect('/login');
+  res.redirect('/login.html');
 }
 
 // Routes
@@ -60,20 +60,20 @@ router.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
-    res.redirect('/login');
+    res.redirect('/login.html');
   } catch (err) {
     res.status(500).send('Error registering new user.');
   }
 });
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/profile',
-  failureRedirect: '/login',
+  successRedirect: '/profile.html',
+  failureRedirect: '/login.html',
   failureFlash: true,
 }));
 
 router.get('/profile', isAuthenticated, (req, res) => {
-  res.render('profile', { user: req.user });
+  res.sendFile(path.join(__dirname, '../profile.html'));
 });
 
 router.get('/logout', (req, res) => {
