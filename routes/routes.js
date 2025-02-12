@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 
 // Define and handle routes using Express.js
 router.get('/', (req, res) => {
@@ -15,6 +16,42 @@ router.get('/games/:game', (req, res) => {
   const game = req.params.game;
   res.render(`games/${game}`);
 });
+
+// Routes for user registration, login, and profile management
+router.post('/register', async (req, res) => {
+  const { username, email, password } = req.body;
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({ username, email, password: hashedPassword });
+    await newUser.save();
+    res.redirect('/login');
+  } catch (err) {
+    res.status(500).send('Error registering new user.');
+  }
+});
+
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/profile',
+  failureRedirect: '/login',
+  failureFlash: true,
+}));
+
+router.get('/profile', isAuthenticated, (req, res) => {
+  res.render('profile', { user: req.user });
+});
+
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
+});
+
+// Middleware for checking if the user is authenticated
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+}
 
 // Release notes and versioning information
 const releaseNotes = `

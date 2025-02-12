@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/path/to/your/styles.css">
+</head>
+<body>
+    <h1>User Profile</h1>
+    <div>
+        <h2>Welcome, <%= user.username %>!</h2>
+        <p>Email: <%= user.email %></p>
+    </div>
+    <div>
+        <h2>Favorite Games</h2>
+        <ul>
+            <% user.favoriteGames.forEach(function(game) { %>
+                <li><%= game %></li>
+            <% }); %>
+        </ul>
+    </div>
+    <div>
+        <h2>High Scores</h2>
+        <ul>
+            <% user.highScores.forEach(function(score) { %>
+                <li><%= score.game %>: <%= score.score %></li>
+            <% }); %>
+        </ul>
+    </div>
+    <div>
+        <h2>Achievements</h2>
+        <ul>
+            <% user.achievements.forEach(function(achievement) { %>
+                <li><%= achievement %></li>
+            <% }); %>
+        </ul>
+    </div>
+    <form action="/auth/logout" method="POST">
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>
