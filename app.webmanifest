@@ -1,0 +1,27 @@
+{
+  "name": "GameIsle",
+  "short_name": "GIS",
+  "description": "This app is for GameIsle website",
+  "start_url": "https://elitegamercj.github.io/GameIsle/Index.html",
+  "scope": "https://elitegamercj.github.io/GameIsle",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#f2e01c",
+  "background_color": "#63ff0f",
+  "dir": "auto",
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "icon512_maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icon512_rounded.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
