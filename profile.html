@@ -4,36 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <link rel="stylesheet" href="/path/to/your/styles.css">
+    <link rel="stylesheet" href="CSS/styles.css">
 </head>
 <body>
     <h1>User Profile</h1>
     <div>
-        <h2>Welcome, <%= user.username %>!</h2>
-        <p>Email: <%= user.email %></p>
+        <h2>Welcome, [username]!</h2>
+        <p>Email: [user.email]</p>
     </div>
     <div>
         <h2>Favorite Games</h2>
         <ul>
-            <% user.favoriteGames.forEach(function(game) { %>
-                <li><%= game %></li>
-            <% }); %>
+            <li>Game 1</li>
+            <li>Game 2</li>
+            <li>Game 3</li>
         </ul>
     </div>
     <div>
         <h2>High Scores</h2>
         <ul>
-            <% user.highScores.forEach(function(score) { %>
-                <li><%= score.game %>: <%= score.score %></li>
-            <% }); %>
+            <li>Game 1: 1000</li>
+            <li>Game 2: 900</li>
+            <li>Game 3: 800</li>
         </ul>
     </div>
     <div>
         <h2>Achievements</h2>
         <ul>
-            <% user.achievements.forEach(function(achievement) { %>
-                <li><%= achievement %></li>
-            <% }); %>
+            <li>Achievement 1</li>
+            <li>Achievement 2</li>
+            <li>Achievement 3</li>
         </ul>
     </div>
     <form action="/auth/logout" method="POST">
