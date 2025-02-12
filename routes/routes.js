@@ -17,19 +17,7 @@ router.get('/games/:game', (req, res) => {
   res.render(`games/${game}`);
 });
 
-// Routes for user registration, login, and profile management
-router.post('/register', async (req, res) => {
-  const { username, email, password } = req.body;
-  try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ username, email, password: hashedPassword });
-    await newUser.save();
-    res.redirect('/login');
-  } catch (err) {
-    res.status(500).send('Error registering new user.');
-  }
-});
-
+// Routes for user login and profile management
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/profile',
   failureRedirect: '/login',
