@@ -20,6 +20,7 @@ document.getElementById('search-button').addEventListener('click', function() {
         { name: 'Image Generator', link: 'Games/imagegen.html' },
         { name: 'PolyTrack', link: 'Games/polytrack.html' },
         { name: 'ShellShockers', link: 'Games/shellshockersio.html' },
+        { name: 'MAKEITOUT', link: 'Games/MAKEITOUT.html' }
     ];
 
     const filteredCategories = categories.filter(category => category.name.toLowerCase().includes(searchInput));
