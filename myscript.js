@@ -1,55 +1,72 @@
+// Register the Service Worker
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('serviceworker.js').then(() => {
-    console.log('Service Worker registered successfully.');
-  });
+    navigator.serviceWorker.register('serviceworker.js').then(() => {
+        console.log('Service Worker registered successfully.');
+    });
 }
-window.addEventListener('appinstalled', () => {
-  // Hide the app-provided install promotion
-  hideInstallPromotion();
-  // Clear the deferredPrompt so it can be garbage collected
-  deferredPrompt = null;
-  // Optionally, send analytics event to indicate successful install
-  console.log('PWA was installed');
-});
-buttonInstall.addEventListener('click', async () => {
-  // Hide the app provided install promotion
-  hideInstallPromotion();
-  // Show the install prompt
-  deferredPrompt.prompt();
-  // Wait for the user to respond to the prompt
-  const { outcome } = await deferredPrompt.userChoice;
-  // Optionally, send analytics event with outcome of user choice
-  console.log(`User response to the install prompt: ${outcome}`);
-  // We've used the prompt and can't use it again, throw it away
-  deferredPrompt = null;
-});
 
-let installPrompt = null;
+let deferredPrompt = null;
 const installButton = document.querySelector("#install");
 
+// Detect if the user came from PWA Hub with ?install-pwa=true
+const urlParams = new URLSearchParams(window.location.search);
+const shouldPromptInstall = urlParams.get("install-pwa");
+
 window.addEventListener("beforeinstallprompt", (event) => {
-  event.preventDefault();
-  installPrompt = event;
-  installButton.removeAttribute("hidden");
+    event.preventDefault();
+    deferredPrompt = event;
+    
+    if (installButton) {
+        installButton.removeAttribute("hidden");
+    }
+
+    // If user came from PWA Hub, show the install prompt automatically
+    if (shouldPromptInstall) {
+        setTimeout(() => {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then(choice => {
+                console.log(`User response to the install prompt: ${choice.outcome}`);
+                deferredPrompt = null;
+            });
+        }, 2000); // Small delay for better user experience
+    }
 });
 
-installButton.addEventListener("click", async () => {
-  if (!installPrompt) {
-    return;
-  }
-  const result = await installPrompt.prompt();
-  console.log(`Install prompt was: ${result.outcome}`);
-  disableInAppInstallPrompt();
-});
-
-function disableInAppInstallPrompt() {
-  installPrompt = null;
-  installButton.setAttribute("hidden", "");
+// Handle manual install button click
+if (installButton) {
+    installButton.addEventListener("click", async () => {
+        if (!deferredPrompt) return;
+        
+        hideInstallPromotion(); // Hide any custom install prompt UI
+        await deferredPrompt.prompt();
+        
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log(`User response to the install prompt: ${outcome}`);
+        
+        deferredPrompt = null;
+    });
 }
 
+// Hide install button after installation
 window.addEventListener("appinstalled", () => {
-  disableInAppInstallPrompt();
+    console.log("PWA was installed");
+    disableInAppInstallPrompt();
 });
+
+// Utility function to hide install button
+function disableInAppInstallPrompt() {
+    deferredPrompt = null;
+    if (installButton) {
+        installButton.setAttribute("hidden", "");
+    }
+}
+
+function hideInstallPromotion() {
+    if (installButton) {
+        installButton.style.display = "none";
+    }
+}
+
 
 document.addEventListener("DOMContentLoaded", function() {
   const navbar = document.querySelector(".navbar");
