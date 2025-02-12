@@ -16,3 +16,11 @@
 - 🗺️ Added new routes in `routes/routes.js` to handle category and game pages using Express.js.
 - 🦺 Added a footer partial in `views/partials/footer.ejs` to include social media sharing options on all pages.
 - 🧭 Added a navbar partial in `views/partials/navbar.ejs` to provide easy navigation across the website.
+- 🔐 Implemented user authentication and profiles in `backend/server.js` and `routes/routes.js`.
+  * Added routes for user registration, login, and profile management.
+  * Used Passport.js for authentication.
+  * Stored user data in a database (e.g., MongoDB).
+* 📂 Created a new file, `backend/auth.js`, to handle authentication logic.
+* 📝 Updated `index.html` to include login and signup forms.
+* 👤 Added user profile pages to display favorite games, high scores, and achievements.
+* 🌐 Integrated social media login options (e.g., Google, Facebook) using Passport.js.

@@ -2,16 +2,32 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const port = 3000;
+const session = require('express-session');
+const passport = require('passport');
+const authRoutes = require('./auth');
 
 // Middleware for static files and JSON parsing
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+
+// Middleware for handling sessions
+app.use(session({
+  secret: 'your_secret_key',
+  resave: false,
+  saveUninitialized: true,
+}));
+
+// Middleware for initializing Passport.js
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Set up EJS as the templating engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Routes
+app.use('/auth', authRoutes);
+
 app.get('/', (req, res) => {
   res.render('index');
 });
